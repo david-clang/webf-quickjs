@@ -9,8 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: sudo apt install -y libcppunit-dev cmake
-      - run: git clone --recurse-submodules https://github.com/openwebf/quickjs
+      - run: git clone https://github.com/david-clang/webf-quickjs.git
+      - run: cd webf-quickjs && git checkout fix/gitmodules
+      - run: cd webf-quickjs && git submodule update --init --recursive
       - run: ls -lah
-      - run: cd quickjs && bash scripts/ci.sh
-      - run: cd quickjs && cat test262_report.txt
-      - run: cd quickjs && cat test262_errors.txt
+      - run: cd webf-quickjs && bash scripts/ci.sh
+      - run: cd webf-quickjs && cat test262_report.txt
+      - run: cd webf-quickjs && cat test262_errors.txt
